@@ -1,0 +1,33 @@
+--create a store database
+
+CREATE TABLE store (ID integer primary key, item TEXT, section TEXT, price INTEGER, quantity INTEGER);
+
+INSERT INTO store VALUES 
+(1, "skirt", "bottoms", 10, 6);
+(2, "blouse", "tops", 15, 12);
+(3, "t-shirt", "tops", 6, 15);
+(4, "long sleeve", "tops", 8, 15);
+(5, "leggings", "bottoms", 20, 10);
+(6, "jeans", "bottoms", 25, 10);
+(7, "socks", "accessories", 2, 30);
+(8, "hat", "accessories", 5, 10);
+(9, "underwear", "accessories", 3, 10);
+(10, "scarf", "accessories", 5, 6);
+
+--display the database ordered by price
+SELECT * FROM store
+ORDER BY price desc;
+
+--what is the avg price of items in tops section?
+SELECT AVG(price) "avg tops item price"
+FROM store
+WHERE section="tops";
+
+--which have the most in quantity?
+SELECT item, section, quantity
+FROM store
+ORDER BY quantity desc
+LIMIT 5
+
+
+
