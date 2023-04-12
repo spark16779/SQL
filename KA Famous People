@@ -1,0 +1,46 @@
+CREATE TABLE singers (ID INTEGER primary key, name TEXT, age INTEGER, song TEXT, release_year INTEGER);
+INSERT INTO singers VALUES 
+(1,"Taylor Swift", 33, "Lover", 2019),
+(2, "Selena Gomez", 30, "Wolves", 2017),
+(3, "Rihanna", 35, "Umbrella", 2007);
+SELECT * FROM singers;
+
+CREATE TABLE partners (ID INTEGER primary key, name TEXT, age INTEGER, partner_id INTEGER);
+INSERT INTO partners VALUES
+(1, "Joe Alwyn", 32, 1),
+(2, "Zayn Malik", 30, 2),
+(3, "ASAP Rocky", 34, 3);
+SELECT * FROM partners;
+
+CREATE TABLE friends (ID INTEGER primary key,friend1_id INTEGER, friend2_id INTEGER);
+INSERT INTO friends VALUES
+(1, 1, 2),
+(2, 2, 3),
+(3, 3, 1);
+SELECT * FROM friends;
+
+** Order artist name, song and release year by desc **
+SELECT name, song, release_year FROM singers
+ORDER BY release_year;
+
+** Use Join function to connect singers to their partners **
+SELECT singers.name, partners.name
+    FROM singers
+    JOIN partners
+    ON singers.id = partners.partner_id;
+    
+** Use Join to connect singers to their partners with their respective ages **
+SELECT singers.name, singers.age, partners.name, partners.age
+    FROM singers
+    JOIN partners
+    ON singers.id = partners.partner_id;
+   
+** Use multiple Joins to connect singers to their friends of their respective partners **
+SELECT a.name, b.name
+    FROM friends
+    JOIN singers a
+    ON a.id = friends.friend1_id
+    JOIN partners b
+    ON b.id = friends.friend2_id;
+    
+    
